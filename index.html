@@ -1,56 +1,222 @@
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
+
 <head>
-	<meta name="google-site-verification" content="r5uKW0m7KN5cxk2uLxrmwTUvfWQqCw7uSVyL9eLXPq8" />
+	<!-- Google Tag Manager -->
+	<script>(function (w, d, s, l, i) {
+			w[l] = w[l] || [];
+			w[l].push({
+				'gtm.start':
+					new Date().getTime(), event: 'gtm.js'
+			});
+			var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+			j.async = true;
+			j.src =
+				'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+			f.parentNode.insertBefore(j, f);
+		})(window, document, 'script', 'dataLayer', 'GTM-KXWB8L9');</script>
+	<!-- End Google Tag Manager -->
 
-
-	<meta charset = "UTF-8">
+	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>مکس کلاس: جایی برای حرفه‌ای شدن</title>
-	<meta name="description" content="عتباری به وسعت هلدینگ ماموت
-
- با مکس کلاس حرفه‌ای بودن را تجربه کن!
-سرویس به‌روزترین اخبار و تحلیل‌ها">
+	<title>BitMax</title>
 	<style>
-		body{
-			background:#1038ce;
-			margin: 0;
+		@font-face {
+			font-family: iransansxv;
+			src: url(iransans/IRANSansXV.woff) format('woff-variations'), url(iransans/IRANSansXV.woff) format('woff');
+			font-weight: 100 900;
+			font-display: fallback;
 		}
-		a{
+
+		body {
+			background: #6E003D;
+			margin: 0;
+			font-family: iransansxv;
+		}
+
+		a {
 			display: flex;
 			width: 100%;
 			height: 100vh;
+			justify-content: center;
 		}
-		picture{
-			max-width: 100%;
-			max-height: 100%;
+
+		picture {
 			width: 100%;
-			height: 100%;
+			height: 100vh;
 			display: flex;
 			justify-content: center;
 			align-items: center;
+
 		}
-		img{
+
+		img {
 			max-width: 100%;
 			max-height: 100%;
+			position: relative;
 		}
-		@media (max-width: 768px) {
-			picture{
-				align-items: flex-end;
+
+		#defaultCountdown {
+			background: #061E42;
+			padding: 10px 0;
+			color: #fff;
+			border-radius: 13px;
+			width: 560px;
+			display: flex;
+			justify-content: center;
+			position: absolute;
+
+			top: 54%;
+			left: 50%;
+			transform: translateX(-50%);
+
+
+		}
+
+		.countdown-section {
+			display: flex;
+			flex: 1 1 auto;
+			gap: 3px;
+			text-align: center;
+
+			position: relative;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.countdown-section+.countdown-section {
+			border-left: 1px solid #0F3269;
+		}
+
+		.countdown-amount {
+			font-size: 36px;
+			font-weight: 600;
+		}
+
+		.countdown-period {
+			height: 100%;
+			font-size: 16px;
+		}
+
+		.countdown-row {
+			direction: rtl;
+			display: flex;
+			flex-direction: row-reverse;
+			width: 100%;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		@media (orientation: landscape) and (max-width: 992px) {
+			#defaultCountdown {
+				width: 43% !important;
+				top: 26% !important;
+				left: 76% !important;
+			}
+
+			.countdown-amount {
+				font-size: 20px !important;
+			}
+
+			.countdown-period {
+				height: 100% !important;
+				font-size: 12px !important;
+			}
+		}
+
+		@media (max-width:992px) {
+
+			#defaultCountdown {
+				width: 417px;
+				top: 43%;
+				left: 50%;
+			}
+			
+			.countdown-amount {
+				font-size: 30px;
+				font-weight: 600;
+			}
+
+			.countdown-period {
+				height: 100%;
+				font-size: 14px;
+			}
+		}
+
+		@media (max-width:545px) {
+			#defaultCountdown {
+				width: 95%;
+				top: 45%;
+			}
+
+			.countdown-amount {
+				font-size: 20px;
+				font-weight: 600;
+			}
+
+			.countdown-period {
+				height: 100%;
+				font-size: 12px;
 			}
 		}
 	</style>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.plugin.min.js"></script>
+	<script src="js/jquery.countdown.min.js"></script>
+	<script src="js/jquery.countdown-fa.js"></script>
+	<script>
+		$(function () {
+			var fourDaysAfter = new Date('6/21/2023 00:00:00');
+
+			var timeNow = new Date(Date.now());
+			if ((fourDaysAfter.getTime() - timeNow.getTime()) < 3600000) {
+				fourDaysAfter = new Date(timeNow.getTime() + 345600000);
+			}
+			//			localStorage.setItem('until', fourDaysAfter)
+			var until = new Date(fourDaysAfter)
+			var untilYear = until.getFullYear();
+			var untilMount = until.getMonth();
+			var untilDay = until.getDate();
+			var untilHour = until.getHours();
+			var untilMinute = until.getMinutes();
+
+			$('#defaultCountdown').countdown({ until: new Date(untilYear, untilMount, untilDay, untilHour, untilMinute) });
+			//			$('#defaultCountdown').countdown({until:Math.floor((until.getTime()-timeNow.getTime())/1000)+'s'});
+			//			$('#defaultCountdown').countdown({until: $.countdown.UTCDate(+210, untilYear, untilMount, untilDay, untilHour, untilMinute, 0, 0)});
+			//			$('#defaultCountdown').countdown({until:dateDiffInDays(timeNow,fourDaysAfter)});
+		});
+		function dateDiffInDays(a, b) {
+			// Discard the time and time-zone information.
+			const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+			const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+			console.log(utc2, utc1, Math.floor((utc2 - utc1) / 1000))
+			return Math.floor((utc2 - utc1) / 1000) + 's';
+		}
+	</script>
 </head>
+
 <body>
-<a href="https://bitmax.ir/auth/sign-up">
-	<picture>
-		<source media = "(min-width: 992px)" srcset = "1200x1200.jpg">
-		<source media = "(min-width: 768px)" srcset = "1200x628.jpg">
-		<source media = "(min-width: 545px)" srcset = "594x1006.jpg">
-		<source media = "(min-width: 300px)" srcset = "351x628.jpg">
-		<img src = "1200x1200.jpg">
-	</picture>
-</a>
+	<!-- Google Tag Manager (noscript) -->
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KXWB8L9" height="0" width="0"
+			style="display:none;visibility:hidden"></iframe>
+	</noscript>
+	<!-- End Google Tag Manager (noscript) -->
+	<a href="https://bitmax.ir/auth/sign-up">
+
+		<picture>
+			<source media="(min-width: 992px)" srcset="images/1200x1200.jpg">
+			<source media="(orientation: landscape) and (max-width: 992px)" srcset="images/1200x628.jpg">
+			<source media="(min-width: 545px)" srcset="images/594x1006.jpg">
+			<source media="(min-width: 300px)" srcset="images/628x351.jpg">
+			<source media="(max-width: 300px)" srcset="images/628x351.jpg">
+			<img src="images/1200x1200.jpg">
+		</picture>
+		<div id="defaultCountdown"></div>
+	</a>
 
 </body>
+
 </html>
